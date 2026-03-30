@@ -1,0 +1,18 @@
+.contact-section {
+  background-color: #f4f6f9;
+}
+
+.contact-section h2 {
+  font-size: 2.5rem;
+  color: #222;
+}
+
+.contact-section p {
+  color: #555;
+  line-height: 1.6;
+}
+
+.card {
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
