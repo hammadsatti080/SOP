@@ -11,6 +11,8 @@ import Branch from "./Component/Homescreen/Branches/Branch.jsx";
 import Footer from "./Component/Homescreen/Footer.jsx";
 import ServicesSection from "./Component/Homescreen/Services/ServicesSection.jsx";
 import FeaturesSection from "./Component/Homescreen/Features/FeaturesSection.jsx";
+import Dashboard from "./Pages/Dashboard.jsx";
+import Dashboards from "./Component/Homescreen/Dashboard/Dashboards.jsx";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
          <Route path="/Branch" element={<Branch/>} />
                <Route path="/Service" element={<ServicesSection/>} />
                      <Route path="/Feature" element={<FeaturesSection/>} />
+                        <Route path="/Dashboard" element={<Dashboard/>} />
+                          <Route path="/Dashboards" element={<Dashboards/>} />
       </Routes>
       <Footer/>
     </Router>

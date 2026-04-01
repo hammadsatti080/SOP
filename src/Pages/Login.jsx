@@ -1,76 +1,264 @@
-import React, { useState } from "react";
+/*
+
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 
-const Login = () => {
-  const [username, setUsername] = useState("");
+function Login() {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
+  const [responseMsg, setResponseMsg] = useState("");
 
-  const navigate = useNavigate(); // React Router hook
+  const validate = () => {
+    let temp = {};
 
-  const handleLogin = (e) => {
+    if (!email) temp.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(email)) temp.email = "Email is invalid";
+
+    if (!password) temp.password = "Password is required";
+    else if (!/^\d{6}$/.test(password))
+      temp.password = "Password must be exactly 6 digits";
+
+    setErrors(temp);
+    return Object.keys(temp).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Demo credentials
-    if (username === "admin" && password === "1234") {
-      setError("");
-      navigate("/"); // Redirect to dashboard
-    } else {
-      setError("Invalid username or password!");
+    if (!validate()) return;
+
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+      if (res.ok) navigate("/Dashboard");
+      else setResponseMsg(data.message);
+    } catch {
+      setResponseMsg("Server error");
     }
   };
 
-  return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-5">
-          <h2 className="text-center mb-4">Login</h2>
-          {error && <div className="alert alert-danger">{error}</div>}
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value)) setPassword(value); // digits only
+  };
 
-          <form onSubmit={handleLogin}>
-            <div className="mb-3">
-              <label htmlFor="username" className="form-label">Username</label>
+  useEffect(() => {
+    if (responseMsg) alert(responseMsg);
+  }, [responseMsg]);
+
+  return (
+    <div className="container vh-100 d-flex justify-content-center align-items-center">
+      <div
+        className="card p-4 shadow"
+        style={{
+          width: "90%",      // mobile: almost full width
+          maxWidth: "500px", // default max width
+        }}
+      >
+        <h3 className="text-center mb-3">School Login</h3>
+
+        <form onSubmit={handleSubmit}>
+          
+          <div className="mb-3">
+            <label className="form-label">Email</label>
+            <div className="input-group">
+              <span className="input-group-text">
+                <FaEnvelope />
+              </span>
               <input
-                type="text"
-                id="username"
+                type="email"
                 className="form-control"
-                placeholder="Enter username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
+            {errors.email && (
+              <small className="text-danger">{errors.email}</small>
+            )}
+          </div>
 
-            <div className="mb-3">
-              <label htmlFor="password" className="form-label">Password</label>
-              <div className="input-group">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  id="password"
-                  className="form-control"
-                  placeholder="Enter password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-                <button
-                  type="button"
-                  className="btn btn-outline-secondary"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? "Hide" : "Show"}
-                </button>
-              </div>
+         
+          <div className="mb-3">
+            <label className="form-label">Password</label>
+            <div className="input-group">
+              <span className="input-group-text">
+                <FaLock />
+              </span>
+              <input
+                type={showPassword ? "text" : "password"}
+                className="form-control"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+              <span
+                className="input-group-text"
+                style={{ cursor: "pointer" }}
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
             </div>
+            {errors.password && (
+              <small className="text-danger">{errors.password}</small>
+            )}
+          </div>
 
-            <button type="submit" className="btn btn-primary w-100 mt-3">
-              Login
-            </button>
-          </form>
-        </div>
+          <button className="btn btn-primary w-100">Login</button>
+        </form>
       </div>
+
+      <style>
+        {`
+          @media (min-width: 768px) and (max-width: 992px) {
+            .card {
+              max-width: 600px !important; 
+            }
+          }
+        `}
+      </style>
     </div>
   );
-};
+}
+
+export default Login;
+*/
+
+
+
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+
+function Login() {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
+  const [responseMsg, setResponseMsg] = useState("");
+
+  const validate = () => {
+    let temp = {};
+
+    if (!email) temp.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(email)) temp.email = "Email is invalid";
+
+    if (!password) temp.password = "Password is required";
+    else if (!/^\d{6}$/.test(password))
+      temp.password = "Password must be exactly 6 digits";
+
+    setErrors(temp);
+    return Object.keys(temp).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+      if (res.ok) navigate("/Dashboard");
+      else setResponseMsg(data.message);
+    } catch {
+      setResponseMsg("Server error");
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value)) setPassword(value); // digits only
+  };
+
+  useEffect(() => {
+    if (responseMsg) alert(responseMsg);
+  }, [responseMsg]);
+
+  return (
+    <div className="container vh-100 d-flex justify-content-center align-items-center">
+      <div
+        className="card p-4 shadow"
+        style={{
+          width: "90%",      // mobile: almost full width
+          maxWidth: "500px", // default max width
+        }}
+      >
+        <h3 className="text-center mb-3">School Login</h3>
+
+        <form onSubmit={handleSubmit}>
+          
+          <div className="mb-3">
+            <label className="form-label">Email</label>
+            <div className="input-group">
+              <span className="input-group-text">
+                <FaEnvelope />
+              </span>
+              <input
+                type="email"
+                className="form-control"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            {errors.email && (
+              <small className="text-danger">{errors.email}</small>
+            )}
+          </div>
+
+         
+          <div className="mb-3">
+            <label className="form-label">Password</label>
+            <div className="input-group">
+              <span className="input-group-text">
+                <FaLock />
+              </span>
+              <input
+                type={showPassword ? "text" : "password"}
+                className="form-control"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+              <span
+                className="input-group-text"
+                style={{ cursor: "pointer" }}
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            </div>
+            {errors.password && (
+              <small className="text-danger">{errors.password}</small>
+            )}
+          </div>
+
+          <button className="btn btn-primary w-100">Login</button>
+        </form>
+      </div>
+
+      <style>
+        {`
+          @media (min-width: 768px) and (max-width: 992px) {
+            .card {
+              max-width: 600px !important; 
+            }
+          }
+        `}
+      </style>
+    </div>
+  );
+}
 
 export default Login;
