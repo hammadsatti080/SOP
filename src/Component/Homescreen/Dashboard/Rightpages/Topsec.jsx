@@ -4,8 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const cards = [
   {
-    label: "Total Students",
-    value: "120",
+    label: "Students",
+   
     color: "#E6F1FB",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -27,11 +27,11 @@ const cards = [
       </svg>
     ),
     viewLink: "/students",
-    addLink: "/students/add",
+    addLink: "/students",
   },
   {
-    label: "Total Teachers",
-    value: "25",
+    label: "Teachers",
+    
     color: "#EAF3DE",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -41,11 +41,11 @@ const cards = [
       </svg>
     ),
     viewLink: "/teachers",
-    addLink: "/teachers/add",
+    addLink: "/teachers",
   },
   {
-    label: "Total Fees",
-    value: "$12,500",
+    label: "Fees",
+   
     color: "#FAEEDA",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -58,8 +58,8 @@ const cards = [
     addLink: "/fees/add",
   },
   {
-    label: "Total Expenses",
-    value: "$3,200",
+    label: " Expenses",
+
     color: "#FCEBEB",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">

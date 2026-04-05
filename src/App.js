@@ -13,7 +13,11 @@ import ServicesSection from "./Component/Homescreen/Services/ServicesSection.jsx
 import FeaturesSection from "./Component/Homescreen/Features/FeaturesSection.jsx";
 import Dashboard from "./Pages/Dashboard.jsx";
 import Dashboards from "./Component/Homescreen/Dashboard/Dashboards.jsx";
-
+import Student from "./Component/Homescreen/Dashboard/Students/Student.jsx";
+import Teacher from "./Component/Homescreen/Dashboard/Teachers/Teacher.jsx";
+import StudentEnrollmentBackup from "./Component/Homescreen/Dashboard/EnrollmentManagers/StudentEnrollmentBackup.jsx";
+ 
+import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
     <Router>
@@ -29,6 +33,10 @@ function App() {
                      <Route path="/Feature" element={<FeaturesSection/>} />
                         <Route path="/Dashboard" element={<Dashboard/>} />
                           <Route path="/Dashboards" element={<Dashboards/>} />
+                              <Route path="/students" element={<Student/>} />
+                              <Route path="/teachers" element={<Teacher/>} />
+                             
+                                <Route path="/StudentEnrollmentBackup" element={<StudentEnrollmentBackup/>} />
       </Routes>
       <Footer/>
     </Router>

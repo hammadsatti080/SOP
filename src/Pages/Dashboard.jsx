@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import UpperNavbar from '../Component/Homescreen/Dashboard/UpperNavbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AboutSection from '../Component/Homescreen/About/AboutSection';
 import Topsec from '../Component/Homescreen/Dashboard/Rightpages/Topsec';
 import Student from '../Component/Homescreen/Dashboard/Students/Student';
 import Teacher from '../Component/Homescreen/Dashboard/Teachers/Teacher';
+import Course from '../Component/Homescreen/Dashboard/Courses/Course';
+
+
+import StudentEnrollment from '../Component/Homescreen/Dashboard/EnrollmentManagers/StudentEnrollment';
+import Result from '../Component/Homescreen/Dashboard/Resultdata/Result';
+import ResultList from '../Component/Homescreen/Dashboard/Resultdata/ResultList';
 
 export default function Dashboard() {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -16,7 +21,8 @@ export default function Dashboard() {
     { id: 'students', label: 'Students' },
     { id: 'teachers', label: 'Teachers' },
       { id: 'Course', label: 'Course' },
-    { id: 'Fee', label: 'Fee' },
+       { id: 'Enrollement', label: 'Enrollement' },
+    { id: 'Result', label: 'Result' },
      { id: 'settings', label: 'Settings' },
    
   ];
@@ -108,17 +114,22 @@ export default function Dashboard() {
           )}
            {activePage === 'Course' && (
             <div>
-                  <AboutSection />
+                   <Course />
             </div>
           )}
-           {activePage === 'Fee' && (
+           {activePage === 'Enrollement' && (
             <div>
-                  <AboutSection />
+                <StudentEnrollment />
+            </div>
+          )}
+           {activePage === 'Result' && (
+            <div>
+                <Result />
             </div>
           )}
           {activePage === 'settings' && (
             <div>
-                  <AboutSection />
+                   <ResultList />
             </div>
           )}
         </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PrintStudent from "./PrintStudent";
+
 const Student = () => {
   const [students, setStudents] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
@@ -18,6 +19,7 @@ const Student = () => {
   const [errors, setErrors] = useState({});
   const [successMsg, setSuccessMsg] = useState("");
   const [filterCNIC, setFilterCNIC] = useState("");
+  const [filterClass, setFilterClass] = useState("");
 
   // Fetch students
   const fetchStudents = async () => {
@@ -55,6 +57,10 @@ const Student = () => {
     if (!formData.cnic) newErrors.cnic = "CNIC required";
     else if (!/^\d{13}$/.test(formData.cnic))
       newErrors.cnic = "CNIC must be 13 digits";
+     const cnicExists = students.some(
+    (stu) => stu.cnic === formData.cnic && (!editingStudent || stu._id !== editingStudent._id)
+  );
+  if (cnicExists) newErrors.cnic = "CNIC already registered";
     return newErrors;
   };
 
@@ -123,13 +129,14 @@ const Student = () => {
     }
   };
 
-  const filteredStudents = students.filter((stu) =>
-    stu.cnic.includes(filterCNIC)
+  const filteredStudents = students.filter(
+    (stu) =>
+      stu.cnic.toString().includes(filterCNIC) &&
+      (filterClass === "" || stu.studentClass.toString() === filterClass)
   );
 
   return (
     <div className="container mt-4">
-      
       {/* Header */}
       <div className="d-flex flex-column flex-md-row justify-content-between gap-2 mb-3">
         <button className="btn btn-primary" onClick={handleAdd}>
@@ -143,6 +150,18 @@ const Student = () => {
           value={filterCNIC}
           onChange={(e) => setFilterCNIC(e.target.value)}
         />
+        <select
+          className="form-select w-md-25"
+          value={filterClass}
+          onChange={(e) => setFilterClass(e.target.value)}
+        >
+          <option value="">All Classes</option>
+          {[...Array(10)].map((_, i) => (
+            <option key={i + 1} value={i + 1}>
+              {i + 1}
+            </option>
+          ))}
+        </select>
       </div>
 
       {/* Success */}
@@ -175,10 +194,16 @@ const Student = () => {
                   <td>{stu.phone}</td>
                   <td>{stu.cnic}</td>
                   <td>
-                    <button className="btn btn-sm btn-info me-2" onClick={() => handleEdit(stu)}>
+                    <button
+                      className="btn btn-sm btn-info me-2"
+                      onClick={() => handleEdit(stu)}
+                    >
                       Edit
                     </button>
-                    <button className="btn btn-sm btn-danger" onClick={() => handleDelete(stu._id)}>
+                    <button
+                      className="btn btn-sm btn-danger"
+                      onClick={() => handleDelete(stu._id)}
+                    >
                       Delete
                     </button>
                   </td>
@@ -197,7 +222,7 @@ const Student = () => {
               <div className="card shadow-sm">
                 <div className="card-body">
                   <h6 className="fw-bold">{stu.name}</h6>
-                  <p className="mb-1"><strong>DOB: </strong> {stu.dob}</p>
+                  <p className="mb-1"><strong>DOB:</strong> {stu.dob}</p>
                   <p className="mb-1"><strong>Gender:</strong> {stu.gender}</p>
                   <p className="mb-1"><strong>Class:</strong> {stu.studentClass}</p>
                   <p className="mb-1"><strong>Father:</strong> {stu.fatherName}</p>
@@ -222,14 +247,13 @@ const Student = () => {
               </div>
             </div>
           ))}
-
           {filteredStudents.length === 0 && (
             <div className="col-12 text-center">No students found</div>
           )}
         </div>
       </div>
 
-      {/* Modal (same as your original) */}
+      {/* Modal */}
       {modalOpen && (
         <div className="modal show d-block">
           <div className="modal-dialog modal-lg">
@@ -246,21 +270,25 @@ const Student = () => {
                   <div className="row mb-3">
                     <div className="col-md-4">
                       <label>Name<strong style={{color:"red"}}>*</strong></label>
-                      <input type="text"
+                      <input
+                        type="text"
                         className={`form-control ${errors.name ? "is-invalid" : ""}`}
                         name="name"
                         value={formData.name}
-                        onChange={handleChange}/>
+                        onChange={handleChange}
+                      />
                       <div className="invalid-feedback">{errors.name}</div>
                     </div>
 
                     <div className="col-md-4">
                       <label>DOB<strong style={{color:"red"}}>*</strong></label>
-                      <input type="date"
+                      <input
+                        type="date"
                         className={`form-control ${errors.dob ? "is-invalid" : ""}`}
                         name="dob"
                         value={formData.dob}
-                        onChange={handleChange}/>
+                        onChange={handleChange}
+                      />
                       <div className="invalid-feedback">{errors.dob}</div>
                     </div>
 
@@ -270,7 +298,8 @@ const Student = () => {
                         className={`form-select ${errors.gender ? "is-invalid" : ""}`}
                         name="gender"
                         value={formData.gender}
-                        onChange={handleChange}>
+                        onChange={handleChange}
+                      >
                         <option value="">Select</option>
                         <option>Male</option>
                         <option>Female</option>
@@ -283,31 +312,41 @@ const Student = () => {
                   <div className="row mb-3">
                     <div className="col-md-4">
                       <label>Class<strong style={{color:"red"}}>*</strong></label>
-                      <input type="text"
-                        className={`form-control ${errors.studentClass ? "is-invalid" : ""}`}
+                      <select
+                        className={`form-select ${errors.studentClass ? "is-invalid" : ""}`}
                         name="studentClass"
                         value={formData.studentClass}
-                        onChange={handleChange}/>
+                        onChange={handleChange}
+                      >
+                        <option value="">Select Class</option>
+                        {[...Array(10)].map((_, i) => (
+                          <option key={i+1} value={i+1}>{i+1}</option>
+                        ))}
+                      </select>
                       <div className="invalid-feedback">{errors.studentClass}</div>
                     </div>
 
                     <div className="col-md-4">
                       <label>Father Name<strong style={{color:"red"}}>*</strong></label>
-                      <input type="text"
+                      <input
+                        type="text"
                         className={`form-control ${errors.fatherName ? "is-invalid" : ""}`}
                         name="fatherName"
                         value={formData.fatherName}
-                        onChange={handleChange}/>
+                        onChange={handleChange}
+                      />
                       <div className="invalid-feedback">{errors.fatherName}</div>
                     </div>
 
                     <div className="col-md-4">
                       <label>Phone<strong style={{color:"red"}}>*</strong></label>
-                      <input type="text"
+                      <input
+                        type="text"
                         className={`form-control ${errors.phone ? "is-invalid" : ""}`}
                         name="phone"
                         value={formData.phone}
-                        onChange={handleChange}/>
+                        onChange={handleChange}
+                      />
                       <div className="invalid-feedback">{errors.phone}</div>
                     </div>
                   </div>
@@ -315,21 +354,25 @@ const Student = () => {
                   <div className="row mb-3">
                     <div className="col-md-6">
                       <label>Address<strong style={{color:"red"}}>*</strong></label>
-                      <input type="text"
+                      <input
+                        type="text"
                         className={`form-control ${errors.address ? "is-invalid" : ""}`}
                         name="address"
                         value={formData.address}
-                        onChange={handleChange}/>
+                        onChange={handleChange}
+                      />
                       <div className="invalid-feedback">{errors.address}</div>
                     </div>
 
                     <div className="col-md-6">
                       <label>CNIC<strong style={{color:"red"}}>*</strong></label>
-                      <input type="text"
+                      <input
+                        type="text"
                         className={`form-control ${errors.cnic ? "is-invalid" : ""}`}
                         name="cnic"
                         value={formData.cnic}
-                        onChange={handleChange}/>
+                        onChange={handleChange}
+                      />
                       <div className="invalid-feedback">{errors.cnic}</div>
                     </div>
                   </div>
