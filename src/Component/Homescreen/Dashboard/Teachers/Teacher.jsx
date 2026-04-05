@@ -152,11 +152,16 @@ const validate = () => {
     setModalOpen(true);
   };
 /* */
-  const filteredTeachers = teachers.filter((t) => {
-  return (
-    (filterStaffId === "" || t.staffId?.includes(filterStaffId)) &&
-    (filterDob === "" || t.dob === filterDob)
-  );
+ const filteredTeachers = teachers.filter((t) => {
+  const staffMatch =
+    filterStaffId === "" ||
+    t.staffId?.toString().toLowerCase().includes(filterStaffId.toLowerCase());
+
+  const dobMatch =
+    filterDob === "" ||
+    (t.dob && t.dob.substring(0, 10) === filterDob);
+
+  return staffMatch && dobMatch;
 });
   return (
     <div className="container mt-3">

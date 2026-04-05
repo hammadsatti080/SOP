@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import UpperNavbar from '../Component/Homescreen/Dashboard/UpperNavbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Topsec from '../Component/Homescreen/Dashboard/Rightpages/Topsec';
+import Topsec from '../Component/Homescreen/Dashboard/Rightpages/Dashboardmain';
 import Student from '../Component/Homescreen/Dashboard/Students/Student';
 import Teacher from '../Component/Homescreen/Dashboard/Teachers/Teacher';
 import Course from '../Component/Homescreen/Dashboard/Courses/Course';
@@ -23,7 +23,7 @@ export default function Dashboard() {
       { id: 'Course', label: 'Course' },
        { id: 'Enrollement', label: 'Enrollement' },
     { id: 'Result', label: 'Result' },
-     { id: 'settings', label: 'Settings' },
+     { id: 'ResultList', label: 'ResultList' },
    
   ];
 
@@ -50,49 +50,95 @@ export default function Dashboard() {
             {links.map(link => (
               <li key={link.id} className="mb-2">
                 <button
-                  className="btn btn-link text-dark p-0 text-decoration-none"
-                  onClick={() => {
-                    setActivePage(link.id);
-                    setShowSidebar(false); // close sidebar on mobile after click
-                  }}
-                >
-                  {link.label}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
+  className="btn w-100 text-start"
+  onClick={() => {
+    setActivePage(link.id);
+    setShowSidebar(false);
+  }}
+  style={{
+    borderRadius: "8px",
+    padding: "8px 12px",
+    transition: "all 0.25s ease",
+    background:
+      activePage === link.id
+        ? "linear-gradient(90deg, #0d6efd, #0b5ed7)"
+        : "transparent",
+    color: activePage === link.id ? "white" : "#212529",
+    fontWeight: activePage === link.id ? "600" : "500",
+    boxShadow:
+      activePage === link.id
+        ? "0 4px 10px rgba(13,110,253,0.2)"
+        : "none",
+  }}
+  onMouseEnter={(e) => {
+    if (activePage !== link.id) {
+      e.target.style.background = "#f1f6ff";
+      e.target.style.color = "#0d6efd";
+      e.target.style.transform = "translateX(5px)";
+    }
+  }}
+  onMouseLeave={(e) => {
+    if (activePage !== link.id) {
+      e.target.style.background = "transparent";
+      e.target.style.color = "#212529";
+      e.target.style.transform = "translateX(0px)";
+    }
+  }}
+>
+  {link.label}
+</button>
+    </li>
+      ))}
+   </ul>
+  </div>
       )}
 
       {/* Desktop layout */}
       <div className="d-flex flex-grow-1">
-
-
-
 
   {/* Sidebar */}
   <div
     className="bg-white border-end shadow-sm p-3 d-none d-md-block"
     style={{ width: "220px", minWidth: "220px" }}
   >
-    <h5 className="mb-4 fw-bold text-primary">
-      School Panel
-    </h5>
-
+   
     <ul className="nav flex-column gap-1">
       {links.map(link => (
         <li key={link.id} className="nav-item">
-          <button
-            className={`nav-link w-100 text-start rounded px-3 py-2 
-              ${activePage === link.id 
-                ? "bg-primary text-white fw-semibold shadow-sm" 
-                : "text-dark"
-              }`}
-            onClick={() => setActivePage(link.id)}
-            style={{ transition: "0.2s" }}
-          >
-            {link.label}
-          </button>
+        <button
+  className={`nav-link w-100 text-start px-3 py-2`}
+  onClick={() => setActivePage(link.id)}
+  style={{
+    borderRadius: "8px",
+    transition: "all 0.25s ease",
+    background:
+      activePage === link.id
+        ? "linear-gradient(90deg, #0d6efd, #0b5ed7)"
+        : "transparent",
+    color: activePage === link.id ? "white" : "#212529",
+    fontWeight: activePage === link.id ? "600" : "500",
+    boxShadow:
+      activePage === link.id
+        ? "0 4px 10px rgba(13,110,253,0.2)"
+        : "none",
+  }}
+  onMouseEnter={(e) => {
+    if (activePage !== link.id) {
+      e.target.style.background = "#f1f6ff";
+      e.target.style.color = "#0d6efd";
+      e.target.style.transform = "translateX(5px)";
+    }
+  }}
+  onMouseLeave={(e) => {
+    if (activePage !== link.id) {
+      e.target.style.background = "transparent";
+      e.target.style.color = "#212529";
+      e.target.style.transform = "translateX(0px)";
+    }
+  }}
+>
+  {link.label}
+</button>       
         </li>
       ))}
     </ul>
@@ -127,7 +173,7 @@ export default function Dashboard() {
                 <Result />
             </div>
           )}
-          {activePage === 'settings' && (
+          {activePage === 'ResultList' && (
             <div>
                    <ResultList />
             </div>

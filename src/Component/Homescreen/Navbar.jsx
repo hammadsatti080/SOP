@@ -4,12 +4,24 @@ import "./Navbar.css";
 export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-      <div className="container">
+      <div className="container" style={{marginLeft:"30px"}}>
 
         {/* Logo */}
-        <a className="navbar-brand fw-bold" href="/">
-          MyApp
-        </a>
+        <div className="d-flex align-items-left">
+  <img
+    src="./Homescreen/school3.jpg"
+    alt="School Logo"
+    style={{
+      width: "70px",      // adjust size as needed
+      height: "40px",
+      objectFit: "cover", // keeps aspect ratio
+      borderRadius: "5px" // optional, rounded corners
+    }}
+  />
+  <span style={{ marginLeft: "10px", fontWeight: "bold", fontSize: "1.2rem" }}>
+    My App
+  </span>
+</div>
 
         {/* Toggle Button */}
         <button

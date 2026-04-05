@@ -18,6 +18,12 @@ import Teacher from "./Component/Homescreen/Dashboard/Teachers/Teacher.jsx";
 import StudentEnrollmentBackup from "./Component/Homescreen/Dashboard/EnrollmentManagers/StudentEnrollmentBackup.jsx";
  
 import "bootstrap/dist/css/bootstrap.min.css";
+import CoursesManager from "./Component/Homescreen/Dashboard/Courses/Course.jsx";
+import StudentEnrollment from "./Component/Homescreen/Dashboard/EnrollmentManagers/StudentEnrollment.jsx";
+import Result from "./Component/Homescreen/Dashboard/Resultdata/Result.jsx";
+import ResultList from "./Component/Homescreen/Dashboard/Resultdata/ResultList.jsx";
+import Toper from "./Component/Homescreen/Services/Toper.jsx";
+import ComputerCoding from "./Component/Homescreen/Services/Subrecord/ComputerCoding.jsx";
 function App() {
   return (
     <Router>
@@ -30,13 +36,18 @@ function App() {
          <Route path="/Contact" element={<Contact />} />
          <Route path="/Branch" element={<Branch/>} />
                <Route path="/Service" element={<ServicesSection/>} />
-                     <Route path="/Feature" element={<FeaturesSection/>} />
-                        <Route path="/Dashboard" element={<Dashboard/>} />
-                          <Route path="/Dashboards" element={<Dashboards/>} />
-                              <Route path="/students" element={<Student/>} />
-                              <Route path="/teachers" element={<Teacher/>} />
-                             
-                                <Route path="/StudentEnrollmentBackup" element={<StudentEnrollmentBackup/>} />
+              <Route path="/Feature" element={<FeaturesSection/>} />
+              <Route path="/Dashboard" element={<Dashboard/>} />
+             <Route path="/Dashboards" element={<Dashboards/>} />
+             <Route path="/students" element={<Student/>} />
+           <Route path="/teachers" element={<Teacher/>} />
+         <Route path="/Courses" element={<CoursesManager/>} />
+            <Route path="/StudentEnrollment" element={<StudentEnrollment/>} />
+                <Route path="/results" element={<Result/>} />
+                        <Route path="/resultslst" element={<ResultList/>} />
+                           <Route path="/Toper" element={<Toper/>} />
+                                <Route path="/Computercodng" element={<ComputerCoding/>} />
+                     <Route path="/StudentEnrollmentBackup" element={<StudentEnrollmentBackup/>} />
       </Routes>
       <Footer/>
     </Router>

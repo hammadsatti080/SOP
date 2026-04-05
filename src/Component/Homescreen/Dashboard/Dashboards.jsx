@@ -1,10 +1,10 @@
 import React from 'react'
-import Topsec from './Rightpages/Topsec'
+import Dashboardmain from './Rightpages/Dashboardmain'
 
 export default function Dashboards() {
   return (
     <div>
-      <Topsec />
+      <Dashboardmain />
     </div>
   )
 }

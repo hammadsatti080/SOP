@@ -12,8 +12,15 @@ export default function Homepage() {
     }
   return (
     <div
-      className="homepage d-flex align-items-center justify-content-center"
-      style={{ backgroundImage: `url(${process.env.PUBLIC_URL + '/Homescreen/Background.jpg'})` }}
+     className="homepage d-flex align-items-center justify-content-center"
+    style={{
+    backgroundImage: `url(${process.env.PUBLIC_URL + '/Homescreen/Homes.jpg'})`,
+    backgroundSize: "cover",        // make the image cover the entire div
+    backgroundPosition: "center",   // center the image
+    backgroundRepeat: "no-repeat",  // prevent repeating
+    width: "100%",                  // full width
+    height: "100vh",                // full viewport height
+  }}
     >
       <div className="overlay text-center p-4 px-md-5">
         <h1 className="display-4 fw-bold text-white mb-3">Best School in Town</h1>

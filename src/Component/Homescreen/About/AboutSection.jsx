@@ -70,7 +70,7 @@ export default function AboutSection() {
           <div className="col-sm-6 col-md-4">
             <div className="card h-100 p-3 shadow-sm">
               <img
-                src={process.env.PUBLIC_URL + "/Homescreen/student.webp"}
+                src={process.env.PUBLIC_URL + "/Homescreen/Lab.jpg"}
                 alt="Lab"
                 className="img-fluid rounded mb-2"
               />
@@ -81,9 +81,10 @@ export default function AboutSection() {
           <div className="col-sm-6 col-md-4">
             <div className="card h-100 p-3 shadow-sm">
               <img
-                src={process.env.PUBLIC_URL + "/Homescreen/ground.jpg"}
+                src={process.env.PUBLIC_URL + "/Homescreen/Sport.jpg"}
                 alt="Sports"
-                className="img-fluid rounded mb-2"
+                className="img-fluid rounded mb-2 " 
+               
               />
               <h5 className="mt-2">Sports Facilities</h5>
               <i className="bi bi-trophy fs-3 text-success"></i>
@@ -92,7 +93,7 @@ export default function AboutSection() {
           <div className="col-sm-6 col-md-4">
             <div className="card h-100 p-3 shadow-sm">
               <img
-                src={process.env.PUBLIC_URL + "/Homescreen/teacher.webp"}
+                src={process.env.PUBLIC_URL + "/Homescreen/library.jpg"}
                 alt="Library"
                 className="img-fluid rounded mb-2"
               />

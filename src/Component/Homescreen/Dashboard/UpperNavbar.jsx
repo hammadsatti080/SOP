@@ -19,7 +19,19 @@ export default function UpperNavbar() {
       <div className="d-flex justify-content-between align-items-center py-2">
 
         {/* App Name */}
-        <h5 className="mb-0 text-truncate">My App</h5>
+      <div className="d-flex align-items-center">
+  <img
+    src="./Homescreen/school3.jpg"
+    alt="School Logo"
+    style={{
+      width: "60px", 
+      marginLeft:"20px",      // adjust size as needed
+      height: "50px",
+      objectFit: "cover", // keeps aspect ratio
+      borderRadius: "5px" // optional, rounded corners
+    }}
+  />
+</div>
 
         {/* Admin Dropdown */}
         <div className="dropdown">
