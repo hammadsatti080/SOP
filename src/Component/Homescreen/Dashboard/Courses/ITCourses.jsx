@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-export default function ActivitiesDropdownSingle() {
+export default function ITCourses() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -23,7 +23,7 @@ export default function ActivitiesDropdownSingle() {
         { title: "Cybersecurity Basics", description: "Safety & encryption", icon: "bi-shield-lock" },
       ],
                         
-      enrollLink: "/Login",
+      enrollLink: "/FeeChallan",
     },
     {
       id: "sports",

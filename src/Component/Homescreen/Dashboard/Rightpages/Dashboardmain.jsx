@@ -160,14 +160,7 @@ export default function Dashboardmain() {
       addLink: "/fees/add",
       icon: <span>💰</span>,
     },
-    {
-      label: "Expenses",
-      value: counts.expenses,
-      color: "#FCEBEB",
-      viewLink: "/expenses",
-      addLink: "/expenses/add",
-      icon: <span>💸</span>,
-    },
+   
   ];
 
   return (

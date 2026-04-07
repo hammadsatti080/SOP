@@ -6,6 +6,7 @@ import FeaturesSection from '../Component/Homescreen/Features/FeaturesSection'
 import TestimonialsSection from '../Component/Homescreen/Testimonial/TestimonialsSection'
 import FAQS from '../Component/Homescreen/FAQ/FAQS'
 
+
 export default function Homescreen() {
   return (
     <div>
@@ -15,6 +16,7 @@ export default function Homescreen() {
        <FeaturesSection/>
     <TestimonialsSection/>
      <FAQS/>
+
     </div>
   )
 }

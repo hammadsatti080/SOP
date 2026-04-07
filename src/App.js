@@ -24,6 +24,8 @@ import Result from "./Component/Homescreen/Dashboard/Resultdata/Result.jsx";
 import ResultList from "./Component/Homescreen/Dashboard/Resultdata/ResultList.jsx";
 import Toper from "./Component/Homescreen/Services/Toper.jsx";
 import ComputerCoding from "./Component/Homescreen/Services/Subrecord/ComputerCoding.jsx";
+import FeeChallan from "./Component/Homescreen/Services/Subrecord/FeeChallan.jsx";
+import ViewList from "./Component/Homescreen/Services/Subrecord/ViewList.jsx";
 function App() {
   return (
     <Router>
@@ -47,6 +49,9 @@ function App() {
                         <Route path="/resultslst" element={<ResultList/>} />
                            <Route path="/Toper" element={<Toper/>} />
                                 <Route path="/Computercodng" element={<ComputerCoding/>} />
+                                       <Route path="/FeeChallan" element={<FeeChallan/>} />
+                                           <Route path="/ViewList" element={<ViewList/>} />
+                                       
                      <Route path="/StudentEnrollmentBackup" element={<StudentEnrollmentBackup/>} />
       </Routes>
       <Footer/>

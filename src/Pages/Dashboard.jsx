@@ -10,6 +10,8 @@ import Course from '../Component/Homescreen/Dashboard/Courses/Course';
 import StudentEnrollment from '../Component/Homescreen/Dashboard/EnrollmentManagers/StudentEnrollment';
 import Result from '../Component/Homescreen/Dashboard/Resultdata/Result';
 import ResultList from '../Component/Homescreen/Dashboard/Resultdata/ResultList';
+import ITCourses from '../Component/Homescreen/Dashboard/Courses/ITCourses';
+import Expense from '../Component/Homescreen/Expenses/Expense';
 
 export default function Dashboard() {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -24,7 +26,8 @@ export default function Dashboard() {
        { id: 'Enrollement', label: 'Enrollement' },
     { id: 'Result', label: 'Result' },
      { id: 'ResultList', label: 'ResultList' },
-   
+      { id: 'ITCourses', label: 'ITCourses' },
+       { id: 'Expense', label: 'Expense' },
   ];
 
   return (
@@ -178,6 +181,17 @@ export default function Dashboard() {
                    <ResultList />
             </div>
           )}
+          {activePage === 'ITCourses' && (
+            <div>
+                   <ITCourses />
+            </div>
+          )}
+           {activePage === 'Expense' && (
+            <div>
+                   <Expense />
+            </div>
+          )}
+          
         </div>
       </div>
     </div>
