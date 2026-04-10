@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./ServicesSection.css";
 import { useNavigate } from "react-router-dom";
+import FeaturesSection from "../Features/FeaturesSection";
 
 export default function ServicesSection() {
   const services = [
@@ -78,6 +79,9 @@ export default function ServicesSection() {
             </div>
           ))}
         </div>
+      </div>
+      <div>
+        <FeaturesSection />
       </div>
     </section>
   );

@@ -47,7 +47,9 @@ export default function Navbar() {
             <li className="nav-item mx-2">
               <a className="nav-link nav-hover" href="/about">About</a>
             </li>
-
+            <li className="nav-item mx-2">
+              <a className="nav-link nav-hover" href="/Service">Services</a>
+            </li>
             <li className="nav-item mx-2">
               <a className="nav-link nav-hover" href="/Contact">Contact</a>
             </li>

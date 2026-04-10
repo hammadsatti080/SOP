@@ -8,17 +8,36 @@ export default function AboutSection() {
     <section className="about-section py-5 " style={{ backgroundColor: "#f8f9fa" }}>
       {/* Top Text Content */}
       <div className="container mb-5">
-        <div className="row">
-          <div className="col-12 text-center mb-4">
-            <h2 className="fw-bold">About Our School</h2>
-            <p className="text-muted">
-              For the last 10 years, our school has been committed to providing 
-              students with high-level education and fostering their all-round 
-              development.
-            </p>
-          </div>
-        </div>
+  <div className="row align-items-center g-5 ">
 
+    {/* LEFT TEXT */}
+    <div className="col-md-6 text-center text-md-start about-text slide-in-left">
+
+  <h2 className="fw-bold display-6 text-primary text-write">
+    About Our School
+  </h2>
+
+  <p className="text-muted mt-3 lead text-write delay-1">
+    For the last 10 years, our school has been committed to providing
+    students with high-level education and fostering their all-round
+    development. We believe in modern learning, discipline, and growth.
+  </p>
+
+</div>
+
+    {/* RIGHT IMAGE */}
+    <div className="col-md-6 text-center animate-fade-right">
+      <div className="image-box">
+        <img
+          className="img-fluid rounded-4 shadow-lg about-img mb-4"
+          src="./Homescreen/Aboutss.jpg"
+          alt="About School"
+        />
+      </div>
+    </div>
+
+  </div>
+  
         <div className="row text-center text-md-start g-4">
           {/* Mission */}
           <div className="col-md-4 mb-4">
